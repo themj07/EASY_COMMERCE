@@ -46,43 +46,40 @@
 						</div>
 
 						<div class="comments-list-wrap">
-							<h3 class="comment-count-title">{{ comments.count }} Comment(s)</h3>
+							<h3 class="comment-count-title">{{ comments.count }} Commentaire(s)</h3>
 							{% for comment in comments %}
 								<div class="comment-list">
 									<div class="single-comment-body">
 										<div class="comment-user-avater">
-											<img src="" alt="">
+											<img src="{{ comment.avatar.url }}" alt="">
 										</div>
 										<div class="comment-text-body">
-											<h4>{{ comment.name }}  <span class="comment-date">{{ comment.date_add }}</span> <a href="#" class="reply-link">reply</a></h4>
+											<h4>{{ comment.name }}  <span class="comment-date">{{ comment.date_add }}</span> <a href="#" class="reply-link">Répondre</a></h4>
 											<p>{{ comment.comment }}</p>
 										</div>
 										{% for reply in replys %}
 										<div class="single-comment-body child">
-											<div class="comment-user-avater">
-												<img src="" alt="">
-											</div>
 											<div class="comment-text-body">
-												<h4> {{ reply.nom }}  <span class="comment-date">{{ respond.date_add }}</span> <a href="#">reply</a></h4>
+												<h4> {{ reply.nom }}  <span class="comment-date">{{ reply.date_add }}</span> <a href="#">Répondre</a></h4>
 												<p>{{ reply.message }}</p>
 											</div>
 										</div>
 										{% endfor %}
 									</div>
 									<div class="comment-template" style="display:none;">
-										<h4>Respond to comment</h4>
-										<p>If you have notice dont hesitate to send us your opinion.</p>
+										<h4>Répondre au commentaire</h4>
+										<p>Si vous avez remarqué, n'hésitez pas à nous faire part de votre opinion.</p>
 										<form method="POST">
 											{% csrf_token %}
-											<input type="hidden" name="comment_id" value="{{ comment.id }}">
+											<input type="hidden" name="parent_id" value="{{ comment.id }}">
 											<p>
-												<input type="text" placeholder="Your Name" name="nom" id="nom">
+												<input type="text" placeholder="Votre nom" name="nom" id="nom">
 											</p>
 											<p>
-												<textarea name="message" id="message" cols="30"  rows="10" placeholder="Your Message"></textarea>
+												<textarea name="message" id="message" cols="30"  rows="10" placeholder="Votre message"></textarea>
 											</p>
 											<p>
-												<input type="submit" id="form-submit" value="Submit">
+												<input type="submit" id="form-submit" value="Envoyer">
 											</p>
 										</form>
 										
@@ -90,6 +87,7 @@
 								</div>
 							{% endfor %}
 						</div>
+						
 						
 						<script>
 							document.querySelectorAll('.reply-link').forEach(function(link) {
@@ -115,6 +113,24 @@
 								</p>
 								<p>
 									<input type="submit" id="form-submit" value="Submit">
+								</p>
+							</form>
+						</div>
+
+						<div class="comment-template" style="display:none;">
+							<h4>Répondre au commentaire</h4>
+							<p>Si vous avez remarqué, n'hésitez pas à nous faire part de votre opinion.</p>
+							<form method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="parent_id" value="{{ comment.id }}">
+								<p>
+									<input type="text" placeholder="Votre nom" name="nom" id="nom">
+								</p>
+								<p>
+									<textarea name="message" id="message" cols="30" rows="10" placeholder="Votre message"></textarea>
+								</p>
+								<p>
+									<input type="submit" id="form-submit" value="Envoyer">
 								</p>
 							</form>
 							
