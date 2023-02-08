@@ -16,9 +16,6 @@ class Contact(models.Model) :
     def __str__(self) :
         return self.nom
     
-    
-
-
 
 
 class Produit(models.Model):
@@ -65,7 +62,6 @@ class Comment(models.Model):
 class Reply(models.Model):
     nom = models.CharField(max_length=255)
     message = models.TextField()
-    
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
     
     status = models.BooleanField(default= True)

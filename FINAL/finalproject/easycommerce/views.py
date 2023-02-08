@@ -160,12 +160,6 @@ def navbar(request):
     return render(request, 'navbar.html', datas)
 
 
-# def login(request):
-#     datas = {
-#     }
-#     return render(request, 'login.html', datas)
-
-
 def register(request):
     datas = {
     }
@@ -209,21 +203,21 @@ def singlenews(request, id):
         if name and email and comment:
             c = Comment(name=name, email=email, comment=comment)
             c.save()
+            
     return render(request, 'singlenews.html', datas)
 
 
 def reply(request) : 
     if request.method == 'POST' : 
-        nom = request.POST.get('nom')
-        message = request.POST.get('message')
+        nom = request.POST.get('nom', '')
+        message = request.POST.get('message', '')
+        comment = Comment.objects.get(id=id)
+        reply, created = Reply.objects.get_or_create(comment=comment)
         
-        reply = Reply() 
         reply.nom = nom
         reply.message = message
-        reply.comment = Comment.objects.get(id=request.POST.get('comment_id'))
         reply.save()
     return render(request, 'singlenews.html')
-
 
 
 
