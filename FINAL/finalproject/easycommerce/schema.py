@@ -1,6 +1,8 @@
 import graphene
 from graphene_django import DjangoObjectType
-from .models import Contact , Produit , Article , Comment , Reply , TeamMember 
+from .models import * 
+from user.models import *
+from blog.models import *
 
 class ContactType(DjangoObjectType):
     class Meta: 

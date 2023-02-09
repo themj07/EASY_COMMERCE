@@ -42,8 +42,9 @@
 							
 							{% if user.is_authenticated %}
 							<a href="" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							{% else %}
+							<a href="{% url 'login' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Connectez vous d'abord</a>
 							{% endif %}
-
 							<p><strong>Categories: </strong>{{produits.categorie}}</p>
 						</div>
 						<h4>Share:</h4>
@@ -80,7 +81,7 @@
 						</div>
 						<h3>Strawberry</h3>
 						<p class="product-price"><span>Per Kg</span> {{ produit.price }} </p>
-						<a href="{% url 'cart' produits.id %} " class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+						<a href="{% url 'cart' produit.id %}" class="cart-btn" id="add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 					</div>
 				</div>
 				{% endfor %}
