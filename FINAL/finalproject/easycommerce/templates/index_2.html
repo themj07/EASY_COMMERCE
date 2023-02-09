@@ -6,17 +6,61 @@
 {% block content %}
 
 
-<div id="cookiePopup" class="hide">
-	<img src="{% static 'img1/cookie.png' %}" />
-	<p>
-	  Our website uses cookies to provide your browsing experience and
-	  relevant information. Before continuing to use our website, you agree &
-	  accept of our <a href="#">Cookie Policy & Privacy.</a>
-	</p>
-	<button id="acceptCookie">Accept</button>
-  <!-- Script -->
-  <script src="{% static 'js1/script.js' %}"></script>
-</div>
+<style>
+	#cookieConsent {
+	  background-color: #333;
+	  color: #fff;
+	  padding: 20px;
+	  position: fixed;
+	  bottom: 0;
+	  width: 100%;
+	  text-align: center;
+	  border-top: 2px solid #fff;
+	  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	  z-index: 999;
+	}
+  
+	#cookieConsent button {
+	  background-color: #fff;
+	  border: 1px solid #333;
+	  color: #333;
+	  padding: 10px 20px;
+	  border-radius: 20px;
+	  text-transform: uppercase;
+	  letter-spacing: 1px;
+	  font-weight: bold;
+	  margin-left: 10px;
+	  cursor: pointer;
+	}
+</style>
+
+<script>
+	function setCookieConsent() {
+	  document.cookie = "cookieConsent=true; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+	  hideCookieConsent();
+	}
+  
+	function rejectCookieConsent() {
+	  document.cookie = "cookieConsent=false; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/;";
+	  hideCookieConsent();
+	}
+  
+	function hideCookieConsent() {
+	  var cookieConsent = document.getElementById("cookieConsent");
+	  cookieConsent.style.display = "none";
+	}
+	
+	window.onload = function() {
+	  if (!document.cookie.includes("cookieConsent=true")) {
+		setTimeout(function() {
+		  var cookieConsent = document.createElement("div");
+		  cookieConsent.id = "cookieConsent";
+		  cookieConsent.innerHTML = "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site. <button onclick='setCookieConsent()'>Accepter</button><button onclick='rejectCookieConsent()'>Refuser</button>";
+		  document.body.appendChild(cookieConsent);
+		}, 1000);
+	  }
+	};
+</script>
 
 
 	<!-- home page slider -->
@@ -260,6 +304,8 @@
 		</div>
 	</div>
 	<!-- end latest news -->
+
+
 
 
 	

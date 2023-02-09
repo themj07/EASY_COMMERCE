@@ -34,7 +34,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .forms import UserUpdateForm
-from .models import Produit , Article , TeamMember, Comment , Cart, Order , Reply
+from .models import Produit , Article , TeamMember, Comment , Cart, Reply
 
 
 
@@ -139,19 +139,6 @@ def cart(request, id):
     return render(request, 'cart.html', datas)
 
 
-def add_to_cart(request, id):
-    user = request.user
-    produits = get_object_or_404(Produit, id=id)
-    cart , _ = Cart.objects.get_or_create(user = user)
-    order , created = Order.objects.get_or_create(user = user , ordered = False , product = produits)
-    if created :
-        cart.orders.add(order)
-        cart.save()
-    else :
-        order.quantity += 1   
-        order.save()
-    
-    return redirect(reverse('singleproduct' , kwargs= {'id' : id}))
 
 
 def navbar(request):
@@ -474,5 +461,4 @@ def custom_login(request):
         template_name="login.html",
         context={"form": form}
         )
-
 

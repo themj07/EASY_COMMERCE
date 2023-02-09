@@ -1,6 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
-from .models import Contact , Produit , Article , Comment , Reply , TeamMember ,  Order , Cart
+from .models import Contact , Produit , Article , Comment , Reply , TeamMember 
 
 class ContactType(DjangoObjectType):
     class Meta: 
@@ -86,30 +86,7 @@ class TeamMemberType(DjangoObjectType):
         ) 
         
 
-class OrderType(DjangoObjectType):
-    class Meta: 
-        model = Order
-        fields = (
-            'user',
-            'product',
-            'quantity',
-            'ordered'
-            'status',
-            'date_add', 
-            'date_update',
-        ) 
 
-class CartType(DjangoObjectType):
-    class Meta: 
-        model = Cart
-        fields = (
-            'user',
-            'orders',
-            'ordered',
-            'ordered_date'
-            'status',
-        ) 
-        
         
 class Query(graphene.ObjectType):
     contacts = graphene.List(ContactType)
@@ -118,8 +95,6 @@ class Query(graphene.ObjectType):
     comments = graphene.List(CommentType)
     replys = graphene.List(ReplyType)
     teammembers = graphene.List(TeamMemberType)
-    orders = graphene.List(OrderType)
-    carts = graphene.List(CartType)
     
 
     def resolve_contacts(root, info, **kwargs):
@@ -146,15 +121,6 @@ class Query(graphene.ObjectType):
             # Querying a list
         return TeamMember.objects.all()
     
-    
-    def resolve_orders(root, info, **kwargs):
-            # Querying a list
-        return Order.objects.all()
-    
-        
-    def resolve_carts(root, info, **kwargs):
-            # Querying a list
-        return Cart.objects.all()
     
     
 schema = graphene.Schema(query=Query)

@@ -18,21 +18,6 @@ class Contact(models.Model) :
     
 
 
-class Produit(models.Model):
-    name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    image = models.ImageField(upload_to='produits/')
-    description = models.TextField()
-    categorie = models.CharField(max_length=255)
-    
-    status = models.BooleanField(default= True)
-    date_add = models.DateTimeField(auto_now= True)
-    date_update = models.DateTimeField(auto_now= True)
-
-    def __str__(self):
-        return self.name
-
-
 class Article(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
@@ -88,23 +73,36 @@ class TeamMember(models.Model):
     def __str__(self) :
         return self.name
 
-class Order(models.Model) :
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Produit , on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
-    ordered = models.BooleanField(default=False)
+
+
+
+class Produit(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    image = models.ImageField(upload_to='produits/')
+    description = models.TextField()
+    categorie = models.CharField(max_length=255)
     
-    
-    def  __str__(self):
-        return f"{self.product.name} ({self.quantity})"
+    status = models.BooleanField(default= True)
+    date_add = models.DateTimeField(auto_now= True)
+    date_update = models.DateTimeField(auto_now= True)
+
+    def __str__(self):
+        return self.name
     
     
 class Cart(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    orders = models.ManyToManyField(Order)
-    ordered = models.BooleanField(default=False)
-    ordered_date = models.DateTimeField(blank=True , null = True)
+    product = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    date_added = models.DateTimeField(auto_now_add=True)
+    total = models.FloatField()
     
     def __str__(self):
-        return self.user.username
+        return self.product
     
+
+
+class CartItem(models.Model):
+    product = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
