@@ -34,7 +34,9 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .forms import UserUpdateForm
-from .models import Produit , Article , TeamMember, Comment , Cart, Reply
+from .models import Produit , Article , TeamMember, Comment , Cart, Reply,CartItem
+from django.db.models import Sum
+
 
 
 
@@ -128,15 +130,7 @@ def singleproduct(request, id):
 
 
 
-def cart(request, id):
-    produits = Produit.objects.get(id=id)
-    produitss = Produit.objects.all()
-    datas = {
-        'produitss' :produitss,
-        'produits': produits,
-        
-    }
-    return render(request, 'cart.html', datas)
+
 
 
 
@@ -462,3 +456,100 @@ def custom_login(request):
         context={"form": form}
         )
 
+def cart(request,id):  
+    user = request.user
+    p8 = Cart.objects.filter(user=user.id) 
+    articles= Produit.objects.get(id=id) 
+    product = get_object_or_404(Produit,id=id)
+    cartItem , _ = CartItem.objects.get_or_create(user=user)
+    order , created = Cart.objects.get_or_create(user=user , product=product)
+    
+
+    if created:
+        cartItem.cart.add(order)
+        q = order.quantity
+        p = order.product.price
+        
+        pt =q*p
+        order.prix_total=pt
+        order.save()
+        ptot= Cart.objects.aggregate(
+        combined_age=Sum('prix_total')
+        )
+        cartItem.prix_total = ptot['combined_age'] 
+        cartItem.save()
+    else:
+        x = order.quantity
+        order.quantity = x
+        order.save()
+    
+    datas = {
+    'articles':articles,
+    'p8':p8,
+    }
+
+    return redirect('page_cart')
+
+def nombre(request,id, choice):
+    user = request.user
+    p8 = Cart.objects.filter(user=user) 
+    articles= Produit.objects.get(id=id) 
+    product = get_object_or_404(Produit,id=id)
+    order= Cart.objects.get(user=user , product=product)
+    cart = CartItem.objects.get(user=user)
+    
+    if choice == 'ajouter':
+        order.quantity += 1
+        q = order.quantity
+        
+        p = order.product.price
+        
+        pt =q*p
+        order.prix_total=pt
+        order.save()
+        ptot= Cart.objects.aggregate(
+        combined_age=Sum('prix_total')
+        )
+        cart.prix_total = ptot['combined_age'] 
+        cart.save()
+        
+    elif choice == 'diminue':
+        x= order.quantity
+        if x  >= 2:
+            order.quantity -= 1
+            
+        q = order.quantity
+        p = order.product.price
+        pt =q*p
+        order.prix_total=pt
+        order.save()
+        ptot= Cart.objects.aggregate(
+        combined_age=Sum('prix_total')
+        )
+        cart.prix_total = ptot['combined_age']
+
+        cart.save()
+
+    elif choice == 'supprimer':
+        order.delete()
+    
+
+    
+    datas = {
+    'articles':articles,
+    'p8':p8,
+    }
+
+    return redirect('page_cart')
+
+
+def page_cart(request):
+    user = request.user
+    cart = CartItem.objects.get(user=user)
+    p8 = Cart.objects.filter(user=user) 
+    
+    datas = {
+    'p8':p8,
+    'cart':cart,
+    }
+    return render(request,'cart.html',datas)

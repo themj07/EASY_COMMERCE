@@ -92,17 +92,21 @@ class Produit(models.Model):
     
     
 class Cart(models.Model):
-    product = models.ForeignKey(Produit, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Produit, on_delete=models.CASCADE, related_name="product_order")
     quantity = models.PositiveIntegerField(default=1)
-    date_added = models.DateTimeField(auto_now_add=True)
-    total = models.FloatField()
+    prix_total = models.PositiveIntegerField(default=0)
+    ordered = models.BooleanField(default=False)
+    ordered_date = models.DateTimeField(null=True, blank=True)
     
-    def __str__(self):
-        return self.product
+    
+    def __str__(self) :
+        return f"{self.user.username}({self.quantity})"
     
 
 
 class CartItem(models.Model):
-    product = models.ForeignKey(Produit, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    cart = models.ManyToManyField(Cart)
+    prix_total = models.PositiveIntegerField(default=0)
+    
