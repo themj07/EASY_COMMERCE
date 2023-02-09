@@ -69,10 +69,19 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    
-    
-    
 
+
+class CartSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Cart
+        fields = ['url', 'user', 'product', 'quantity' , 'prix_total', 'ordered' , 'ordered_date' ]
+
+# ViewSets define the view behavior.
+class CartViewSet(viewsets.ModelViewSet):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    
+    
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Comment
@@ -107,6 +116,18 @@ class TeamMemberViewSet(viewsets.ModelViewSet):
     queryset = TeamMember.objects.all()
     serializer_class = TeamMemberSerializer
     
+    
+
+class CartItemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ['url', 'user', 'cart', 'prix_total']
+
+# ViewSets define the view behavior.
+class CartItemViewSet(viewsets.ModelViewSet):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+
 
 
 
@@ -124,6 +145,8 @@ router.register(r'Article', ArticleViewSet)
 router.register(r'Comment', CommentViewSet)
 router.register(r'Reply', ReplyViewSet)
 router.register(r'TeamMember', TeamMemberViewSet)
+router.register(r'Cart', CartViewSet)
+router.register(r'CartItem', CartItemViewSet)
 
 
 
