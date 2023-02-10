@@ -63,7 +63,8 @@ INSTALLED_APPS = [
     "graphene_django",
     'rest_framework',
     'blog',
-    'user'
+    'user',
+    'chat'
 ]
 
 MIDDLEWARE = [

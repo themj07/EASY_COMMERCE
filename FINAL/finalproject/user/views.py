@@ -1,41 +1,20 @@
-from django.shortcuts import render
-from django.shortcuts import render
 from .models import Contact
-
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.utils.encoding import force_bytes, force_text
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
-from django.core.mail import send_mail, EmailMessage
-from finalproject import settings
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
-from django.urls import reverse
-from logging.config import valid_ident
-from typing import Protocol
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate, get_user_model
-from django.contrib import messages
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
-from django.core.mail import EmailMessage
-from django.core.validators import validate_email
-from django.core.exceptions import ValidationError
 from django.db.models.query_utils import Q
-from django.shortcuts import get_object_or_404
 from .forms import UserRegistrationForm , SetPasswordForm, PasswordResetForm, UserLoginForm
 from .tokens import account_activation_token
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from .forms import UserUpdateForm
-from django.db.models import Sum
 
 # Create your views here.
 

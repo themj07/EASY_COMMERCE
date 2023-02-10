@@ -76,6 +76,11 @@
 								<li><a href="admin/">Admin</a></li>
 								{% else %}					
 								<li><a href="{% url 'profile' user.username %}">profile({{user.username}})</a></li>
+								<li><a href="{% url 'home' %}">Chat</a>
+									<ul class="sub-menu">
+										<li><a href="{% url 'home' %}">Discutter avec d'autres personnes </a></li>
+									</ul>
+								</li>
 								{% endif %}
 								<li><a href="{% url 'logout' %}">Log out</a></li>
 								{% else %}
