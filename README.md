@@ -27,6 +27,8 @@ DATABASES = {
 6 - lancer le server en fesant : python manage.py runserver 127.0.0.1:7000 
 
 FONCTIONNALITE :
+NB : Architecture du projet :
+Ce projet comporte 3 applications : user ( tous ce qui est rapport avec l'utilsateur) , shop (tous ce qui est en rapport avec la boutique de vente) , blog (tous ce qui est rapport avec le blog )
 
 I/ Authentification : 
 
