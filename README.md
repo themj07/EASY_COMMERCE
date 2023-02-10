@@ -5,26 +5,9 @@ INSTALLATION :
 
 2 - installer dependance : pip install -r requirements. txt
 
-3 - creer dans postgreSQL via pgAdmin4 une base de données du nom de dbeasycommerce et configuer le reste de informations en fonction de vos informations postgres dans le settings.py :
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'dbeasycommerce',
-       'USER': 'Votre_user',
-       'PASSWORD': 'Votre_password',
-       'HOST': '127.0.0.1',
-       'PORT': '5432',
-   }
-}
+3 - acceder aux applications en fesant : cd final/finalproject
 
-
-4 - acceder aux applications en fesant : cd final/finalproject
-
-5 - Apres configurations du settings faire : 
-- python manage.py makemigrations
-- python manage.py migrate 
-
-6 - lancer le server en fesant : python manage.py runserver 127.0.0.1:7000 
+4 - lancer le server en fesant : python manage.py runserver 127.0.0.1:7000 
 
 FONCTIONNALITE :
 
