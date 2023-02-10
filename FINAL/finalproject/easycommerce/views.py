@@ -63,13 +63,10 @@ def index(request):
     return render(request, 'index.html', datas)
 
 
-
-
-
-def checkout(request):
+def navbar(request):
     datas = {
     }
-    return render(request, 'checkout.html', datas)
+    return render(request, 'navbar.html', datas)
 
 
 def header(request):
@@ -82,6 +79,16 @@ def cookie(request):
     datas = {
     }
     return render(request, 'cookie.html', datas)
+
+
+
+
+
+
+def checkout(request):
+    datas = {
+    }
+    return render(request, 'checkout.html', datas)
 
 
 def shop(request):
@@ -102,14 +109,6 @@ def singleproduct(request, id):
             'produitss' :produitss,
     }
     return render(request, 'singleproduct.html', datas)
-
-
-def navbar(request):
-    datas = {
-    }
-    return render(request, 'navbar.html', datas)
-
-
 
 
 

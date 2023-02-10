@@ -1,4 +1,4 @@
-from .models import Contact
+from blog.models import *
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth import login, logout
 from django.contrib import messages
@@ -276,17 +276,3 @@ def activateEmail(request, user, to_email):
         messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
 
-def contact(request) : 
-    if request.method == 'POST' : 
-        nom = request.POST.get('name')
-        email = request.POST.get('email')
-        com = request.POST.get('subject')
-        
-        
-        contact = Contact()
-        contact.nom = nom
-        contact.email = email 
-        contact.commentaire = com 
-        contact.save()
-        
-    return render(request, 'contact.html')

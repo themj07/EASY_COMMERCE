@@ -31,7 +31,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-from .models import Article , TeamMember, Comment , Reply
+from .models import Article , TeamMember, Comment , Reply , Contact
 from easycommerce.models import *
 
 
@@ -83,3 +83,19 @@ def reply(request) :
         reply.message = message
         reply.save()
     return render(request, 'singlenews.html')
+
+
+def contact(request) : 
+    if request.method == 'POST' : 
+        nom = request.POST.get('name')
+        email = request.POST.get('email')
+        com = request.POST.get('subject')
+        
+        
+        contact = Contact()
+        contact.nom = nom
+        contact.email = email 
+        contact.commentaire = com 
+        contact.save()
+        
+    return render(request, 'contact.html')

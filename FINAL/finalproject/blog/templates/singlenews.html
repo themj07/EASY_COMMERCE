@@ -79,7 +79,12 @@
 												<textarea name="message" id="message" cols="30"  rows="10" placeholder="Votre message"></textarea>
 											</p>
 											<p>
+												{% if user.is_authenticated %}
 												<input type="submit" id="form-submit" value="Envoyer">
+												{% else %}	
+												<a href="{% url 'login' %}" class="cart-btn" id="add-to-cart-btn"><i class="fas fa-shopping-cart"></i>Connectez vous avant de commenter</a>
+												{% endif %}	
+
 											</p>
 										</form>
 										
@@ -114,7 +119,12 @@
 									<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Your Message"></textarea>
 								</p>
 								<p>
+									{% if user.is_authenticated %}
 									<input type="submit" id="form-submit" value="Submit">
+									{% else %}	
+									<a href="{% url 'login' %}" class="cart-btn" id="add-to-cart-btn"><i class="fas fa-shopping-cart"></i>Connectez vous avant de commenter</a>
+									{% endif %}	
+
 								</p>
 							</form>
 						</div>
@@ -131,7 +141,11 @@
 									<textarea name="message" id="message" cols="30" rows="10" placeholder="Votre message"></textarea>
 								</p>
 								<p>
+									{% if user.is_authenticated %}
 									<input type="submit" id="form-submit" value="Envoyer">
+									{% else %}	
+									<a href="{% url 'login' %}" class="cart-btn" id="add-to-cart-btn"><i class="fas fa-shopping-cart"></i>Connectez vous avant de commenter</a>
+									{% endif %}	
 								</p>
 							</form>	
 						</div>

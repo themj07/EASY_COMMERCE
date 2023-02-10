@@ -65,9 +65,6 @@
 								</li>
 								<li><a href="{% url 'contact' %}">Contact</a></li>
 								<li><a href="{% url 'shop' %}">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="">Cart</a></li>
-									</ul>
 								</li>
 
 								
@@ -76,11 +73,6 @@
 								<li><a href="admin/">Admin</a></li>
 								{% else %}					
 								<li><a href="{% url 'profile' user.username %}">profile({{user.username}})</a></li>
-								<li><a href="{% url 'home' %}">Chat</a>
-									<ul class="sub-menu">
-										<li><a href="{% url 'home' %}">Discutter avec d'autres personnes </a></li>
-									</ul>
-								</li>
 								{% endif %}
 								<li><a href="{% url 'logout' %}">Log out</a></li>
 								{% else %}
@@ -154,9 +146,9 @@
 					<div class="footer-box get-in-touch">
 						<h2 class="widget-title">Get in Touch</h2>
 						<ul>
-							<li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-							<li>support@fruitkha.com</li>
-							<li>+00 111 222 3333</li>
+							<li>24/7, Grand-Bassam, Côte-d'ivoire</li>
+							<li>easycommerce@gmail.com</li>
+							<li>+225 07 07 96 13 11 </li>
 						</ul>
 					</div>
 				</div>

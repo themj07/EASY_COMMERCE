@@ -10,7 +10,6 @@ from rest_framework import routers, serializers, viewsets
 from easycommerce.models import *
 from user.models import *
 from blog.models import *
-from chat.models import *
 
 
 
@@ -118,27 +117,8 @@ class CartItemViewSet(viewsets.ModelViewSet):
     serializer_class = CartItemSerializer
     
 
-class RoomSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Room
-        fields = ['url', 'name']
-
-# ViewSets define the view behavior.
-class RoomViewSet(viewsets.ModelViewSet):
-    queryset = Room.objects.all()
-    serializer_class = RoomSerializer
 
 
-
-class MessageSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Message
-        fields = ['url', 'value' , "user" , "room"]
-
-# ViewSets define the view behavior.
-class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
 
          
     
@@ -154,8 +134,6 @@ router.register(r'Reply', ReplyViewSet)
 router.register(r'TeamMember', TeamMemberViewSet)
 router.register(r'Cart', CartViewSet)
 router.register(r'CartItem', CartItemViewSet)
-router.register(r'Room', RoomViewSet)
-router.register(r'Message', MessageViewSet)
 
 
 
@@ -164,7 +142,6 @@ urlpatterns = [
     path('',include("easycommerce.urls")),
     path('',include("blog.urls")),
     path('',include("user.urls")),
-    path('',include("chat.urls")),
     path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
     path('api-auth/', include('rest_framework.urls')),
     path('apirest', include(router.urls)),

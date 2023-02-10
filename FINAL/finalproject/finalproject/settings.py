@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'blog',
     'user',
-    'chat'
 ]
 
 MIDDLEWARE = [
@@ -112,6 +111,8 @@ WSGI_APPLICATION = 'finalproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+
 
 # DATABASES = {
 #     'default': {
