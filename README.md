@@ -36,8 +36,8 @@ II/ Boutique de vente
 III/ Blog
 
 - Administrateur(superuser) peut publier des articles
-
--les utilisateurs peuvent commenter et repondre aux commentaires deja existants 
+ 
+- les utilisateurs peuvent commenter et repondre aux commentaires deja existants 
 
 IV / Formulaire de contact 
 
