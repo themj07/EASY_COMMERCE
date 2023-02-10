@@ -48,9 +48,9 @@
 									<td class="product-price">{{p.product.price}}</td>
 									<td class="product-quantity">
 									<div class="cart-buttons">
-										<a href="{% url 'nombre' p.product.id 'diminue' %}" class="boxed-btn">Update Cart</a>
+										<a href="{% url 'nombre' p.product.id 'diminue' %}" class="boxed-btn">-</a>
 										<input type="number" placeholder="{{p.quantity}}">
-										<a href="{% url 'nombre' p.product.id 'ajouter' %}" class="boxed-btn black">Check Out</a>
+										<a href="{% url 'nombre' p.product.id 'ajouter' %}" class="boxed-btn ">+</a>
 									</div>
 									</td>
 									<td class="product-total">{{p.prix_total}}</td>
