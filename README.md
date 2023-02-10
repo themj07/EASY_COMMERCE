@@ -7,7 +7,7 @@ INSTALLATION :
 
 3 - configurer la section DATABASE du settings.py 
 
-4 - acceder aux applications en fesant : cd/final/finalproject
+4 - acceder aux applications en fesant : cd final/finalproject
 
 5 - Apres configurations du settings faire : 
 - python manage.py makemigrations
