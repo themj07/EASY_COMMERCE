@@ -7,13 +7,13 @@ INSTALLATION :
 
 3 - configurer la section DATABASE du settings.py 
 
-4 - Apres configurations du settings faire : 
+4 - acceder aux applications en fesant : cd/final/finalproject
+
+5 - Apres configurations du settings faire : 
 - python manage.py makemigrations
 - python manage.py migrate 
 
-4 - acceder aux applications en fesant : cd/final/finalproject
-
-5 - lancer le server en fesant : python manage.py runserver 127.0.0.1:7000 
+6 - lancer le server en fesant : python manage.py runserver 127.0.0.1:7000 
 
 FONCTIONNALITE :
 
