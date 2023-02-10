@@ -44,9 +44,9 @@ Une bannière de cookies (avec la possibilité d'accepter ou de refuser)
 
 VI/ Micro-services
 
--API REST pour intégrer les fonctionnalités dans une application mobile.
+-API REST pour intégrer les fonctionnalités dans une application mobile : http://127.0.0.1:7000/apirest
 
--API GraphQL pour améliorer la fluidité de l'application avec un query optimisé qui retourne un maximum d'informations.
+-API GraphQL pour améliorer la fluidité de l'application avec un query optimisé qui retourne un maximum d'informations : http://127.0.0.1:7000/graphql
 
 
 
