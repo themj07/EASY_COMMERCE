@@ -47,6 +47,7 @@ class ArticleType(DjangoObjectType):
             'date_update',
         ) 
         
+        
 
 class CommentType(DjangoObjectType):
     class Meta: 
@@ -72,6 +73,7 @@ class ReplyType(DjangoObjectType):
             'date_add', 
             'date_update',
         ) 
+        
         
 class TeamMemberType(DjangoObjectType):
     class Meta: 

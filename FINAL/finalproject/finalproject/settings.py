@@ -114,27 +114,24 @@ WSGI_APPLICATION = 'finalproject.wsgi.application'
 
 
 
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'dbeasycommerce',
+       'USER': 'postgres',
+       'PASSWORD': 'dieuestgrand',
+       'HOST': '127.0.0.1',
+       'PORT': '5432',
+   }
+}
+
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'dbeasycommerce',
-#         'USER' : 'root' ,
-#         'PASSWORD' : '' ,
-#         'HOST' : '127.0.0.1' ,
-#         'PORT' : '3306' ,
-#         'OPTIONS' : {
-#             'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
-#         }
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 
