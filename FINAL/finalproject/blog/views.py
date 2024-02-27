@@ -1,18 +1,29 @@
-from django.shortcuts import render
-from .models import Article , TeamMember, Comment , Reply , Contact
-from easycommerce.models import *
+from django.shortcuts import redirect, render
+from .models import Article, Comment , Reply , Contact
+from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, redirect, get_object_or_404
 
-
-def about(request):
-    members = TeamMember.objects.all()
+def index(request):
+    articles = Article.objects.all()
     datas = {
-        'members': members
+        'articles' : articles,
     }
-    return render(request, 'about.html', datas)
+    return render(request, 'index.html', datas)
 
+
+def navbar(request):
+    datas = {
+    }
+    return render(request, 'navbar.html', datas)
+
+
+def header(request):
+    datas = {
+    }
+    return render(request, 'header.html', datas)
 
 def news(request):
-    articles = Article.objects.all()
+    articles = Article.objects.filter(is_approved=True)
     datas = {
         'articles' : articles
     }
@@ -20,12 +31,10 @@ def news(request):
 
 def singlenews(request, id):
     articles = Article.objects.get(id = id)
-    produits = Produit.objects.all()
     comments = Comment.objects.all()
     replys = Reply.objects.all()
     datas = {
         'articles' : articles,
-        'produits': produits,
         'comments' : comments,
         'replys' : replys
     }
@@ -40,17 +49,6 @@ def singlenews(request, id):
     return render(request, 'singlenews.html', datas)
 
 
-def reply(request) : 
-    if request.method == 'POST' : 
-        nom = request.POST.get('nom', '')
-        message = request.POST.get('message', '')
-        comment = Comment.objects.get(id=id)
-        reply, created = Reply.objects.get_or_create(comment=comment)
-        
-        reply.nom = nom
-        reply.message = message
-        reply.save()
-    return render(request, 'singlenews.html')
 
 
 def contact(request) : 
@@ -67,3 +65,45 @@ def contact(request) :
         contact.save()
         
     return render(request, 'contact.html')
+
+
+def create_news(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        description = request.POST.get('description')
+        image = request.FILES.get('image')
+
+        create_news = Article()
+        create_news.title = title
+        create_news.author = author 
+        create_news.description = description
+        create_news.image = image
+        create_news.save()
+
+        return redirect('news')
+
+    return render(request, 'create_annonce.html')
+
+
+
+@login_required
+@permission_required('blog.change_article', raise_exception=True)
+def admin_articles(request):
+    articles = Article.objects.all()
+    return render(request, 'admin_articles.html', {'articles': articles})
+
+@login_required
+@permission_required('blog.change_article', raise_exception=True)
+def approve_article(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.is_approved = True
+    article.save()
+    return redirect('admin_articles')
+
+@login_required
+@permission_required('blog.delete_article', raise_exception=True)
+def delete_article(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect('admin_articles')

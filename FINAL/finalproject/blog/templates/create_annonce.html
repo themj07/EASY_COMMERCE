@@ -1,0 +1,83 @@
+{% extends 'bases/base.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Get 24/7 Support</p>
+						<h1>Creer une annonce</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- contact form -->
+	<div class="contact-from-section mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="form-title">
+						<h2>Have you any question?</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+					</div>
+				 	<div id="form_status"></div>
+                     <div class="contact-form">
+                        <form id="request" method="post" enctype="multipart/form-data" action="{% url 'create_annonce' %}">
+                            {% csrf_token %}
+                            <p>
+                                <input type="text" placeholder="Title" name="title" id="title" required>
+                            </p>
+                            <p>
+                                <input type="text" name="author" id="author" value="{{ user.username }}" readonly required>
+                            </p>
+                            <p>
+                                <textarea name="description" id="description" cols="30" rows="10" placeholder="Description" required></textarea>
+                            </p>
+                            <p>
+                                <input type="file" name="image" id="image" required>
+                            </p>
+                            <input type="hidden" name="token" value="FsWga4&@f6aw" />
+                            <p><input type="submit" id = "form-submit"></p>
+                        </form>
+                    </div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end contact form -->
+
+	<!-- jquery -->
+	<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- count down -->
+	<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+	<!-- isotope -->
+	<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<!-- waypoints -->
+	<script src="{% static 'assets/js/waypoints.js' %}"></script>
+	<!-- owl carousel -->
+	<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<!-- magnific popup -->
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- mean menu -->
+	<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+	<!-- sticker js -->
+	<script src="{% static 'assets/js/sticker.js' %}"></script>
+	<!-- form validation js -->
+	<script src="{% static 'assets/js/form-validate.js' %}"></script>
+	<!-- main js -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+	
+	{% endblock content %}

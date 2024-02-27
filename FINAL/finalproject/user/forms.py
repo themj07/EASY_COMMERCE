@@ -8,37 +8,20 @@ from django.contrib.auth import get_user_model
 
 
 class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField(help_text='A valid email address, please.', required=True)
+    email = forms.EmailField(help_text='A valid email address, please.', required=False)
 
     class Meta:
         model = get_user_model()
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super(UserRegistrationForm, self).save(commit=False)
-        user.email = self.cleaned_data['email']
+        user.email = self.cleaned_data.get('email')  # Use get() instead of direct access
         if commit:
             user.save()
 
         return user
-    
-class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
-    class Meta:
-        model = get_user_model()
-        fields = ['first_name', 'last_name', 'email']
-
-class SetPasswordForm(SetPasswordForm):
-    class Meta:
-        model = get_user_model()
-        fields = ['new_password1', 'new_password2']
-
-class PasswordResetForm(PasswordResetForm):
-    def __init__(self, *args, **kwargs):
-        super(PasswordResetForm, self).__init__(*args, **kwargs)
-    
-   
+  
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)

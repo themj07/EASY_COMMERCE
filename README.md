@@ -3,7 +3,7 @@ INSTALLATION :
 
 1 - activer environnement virtuel : .\venv\Scripts\activate
 
-2 - installer dependance : pip install -r requirements. txt
+2 - installer dependance : pip install -r requirements.txt
 
 3 - acceder aux applications en fesant : cd final/finalproject
 

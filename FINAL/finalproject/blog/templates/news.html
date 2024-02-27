@@ -26,37 +26,24 @@
 			<div class="row">
 				{% for article in articles %}
 				<div class="col-lg-4 col-md-6">
-					<div class="single-latest-news">
-						<a href="{% url 'singlenews' article.id %}"><img src="{{ article.image.url }}" alt="" id="image-{{ article.id }}"></a>
-						<div class="news-text-box">
-							<h3><a href="{% url 'singlenews' article.id %}"><span id="title-{{ article.title_id }}">{{ article.title }}</span>.</a></h3>
-							<p class="blog-meta">
-								<span class="author"><i class="fas fa-user"></i> <span id="author-{{ article.author_id }}">{{ article.author }}</span></span>
-								<span class="date"><i class="fas fa-calendar"></i> <span id="date-{{ article.date_created_id }}"> {{ article.date_created }}</span></span>
-							</p>
-							<p class="excerpt"><span id="description-{{ article.description_id }}">{{ article.description|truncatechars:100 }}...</span></p>
-							<a href="{% url 'singlenews' article.id %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-						</div>
+				  <div class="single-latest-news">
+					<a href="{% url 'singlenews' article.id %}"><img src="{{ article.image.url }}" alt="" id="image-{{ article.id }}"></a>
+					<div class="news-text-box">
+					  <h3><a href="{% url 'singlenews' article.id %}"><span id="title-{{ article.title_id }}">{{ article.title }}</span>.</a></h3>
+					  <p class="blog-meta">
+						<span class="author"><i class="fas fa-user"></i> <span id="author-{{ article.author_id }}">{{ article.author }}</span></span>
+						<span class="date"><i class="fas fa-calendar"></i> <span id="date-{{ article.date_created_id }}"> {{ article.date_created }}</span></span>
+					  </p>
+					  <p class="excerpt"><span id="description-{{ article.description_id }}">{{ article.description|truncatechars:100 }}...</span></p>
+					  <a href="{% url 'singlenews' article.id %}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
 					</div>
+				  </div>
 				</div>
 				{% endfor %}
-			</div>
-			<div class="row">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 text-center">
-							<div class="pagination-wrap">
-								<ul>
-									<li><a href="#">Prev</a></li>
-									<li><a href="#">1</a></li>
-									<li><a class="active" href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">Next</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
+			  </div>
+			
+			<div class="text-center">
+				<a href="{% url 'create_annonce' %}" class="primary-btn btn-lg">Create an announcement</a>
 			</div>
 		</div>
 	</div>

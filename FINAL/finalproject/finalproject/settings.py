@@ -11,30 +11,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 import django_heroku
-import dj_database_url
 
 
 import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_USE_TLS = EMAIL_USE_TLS
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_FROM = 'squadzer7@gmail.com'
-EMAIL_HOST_USER = 'squadzer7@gmail.com'
-EMAIL_HOST_PASSWORD = 'zrxuawfrbchsfmqb'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
-
-
-
-PASSWORD_RESET_TIMEOUT = 14400
-
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880 # 5MB
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,10 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'easycommerce.apps.EasycommerceConfig',
-    'crispy_forms',
-    "graphene_django",
-    'rest_framework',
     'blog',
     'user',
 ]
@@ -79,17 +59,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-GRAPHENE = {
-    "SCHEMA": "django_root.schema.schema"
-}
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
 
 ROOT_URLCONF = 'finalproject.urls'
 
@@ -110,27 +79,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'finalproject.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-
-
-
-
-
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'dbeasycommerce',
-#        'USER': 'postgres',
-#        'PASSWORD': 'dieuestgrand',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#    }
-# }
-
 
 DATABASES = {
     'default': {
